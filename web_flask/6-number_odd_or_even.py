@@ -57,7 +57,7 @@ def number_template_n(n):
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
+def number_odd_or_even_n(n):
     if n % 2 == 0:
         parity = 'even'
     else:
