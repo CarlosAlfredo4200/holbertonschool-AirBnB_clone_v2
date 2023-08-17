@@ -3,20 +3,21 @@
 from flask import Flask, render_template
 from models.state import State
 from models import storage
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 app = Flask(__name__)
 
 
 @app.route('/states_list', strict_slashes=False)
-def states_list():
-    states = storage.all("State").values()
-    return render_template('7-states_list.html', states=states)
-
-
 @app.teardown_appcontext
-def teardown_db():
+def teardown_db(exception):
     """Remove the current SQLAlchemy session"""
     storage.close()
+
+
+def states_list():
+    states = sorted(storage.all(State).values(), key=lambda s: s.name)
+    return render_template('7-states_list.html', states=states)
 
 
 if __name__ == '__main__':
