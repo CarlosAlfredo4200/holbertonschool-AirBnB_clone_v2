@@ -62,7 +62,7 @@ def number_odd_or_even(n):
         parity = 'even'
     else:
         parity = 'odd'
-    return render_template('6-number_odd_or_even.html', number=n, parity=parity)
+    return render_template('6-number_odd_or_even.html', number=n, type_data=parity)
 
 
 if __name__ == '__main__':
